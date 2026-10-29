@@ -8,7 +8,7 @@ compatibility_date = "2025-09-01"
 #
 # [[kv_namespaces]]
 # binding = "MEMORY"
-# id = "ВСТАВЬТЕ_ID_ХРАНИЛИЩА"
+id = "39c9f9361cdc4a3ca4083a64fccf887d"
 
 # Секреты (токены и ключи) сюда НЕ пишутся: они задаются в настройках Cloudflare
 # (Settings -> Variables and Secrets) и в репозиторий не попадают.
