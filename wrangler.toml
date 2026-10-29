@@ -6,8 +6,8 @@ compatibility_date = "2025-09-01"
 # (Storage & Databases -> KV -> Create), скопируйте его ID, вставьте сюда
 # и уберите решётки в начале трёх строк ниже.
 #
-# [[kv_namespaces]]
-# binding = "MEMORY"
+kv_namespaces
+binding = "MEMORY"
 id = "39c9f9361cdc4a3ca4083a64fccf887d"
 
 # Секреты (токены и ключи) сюда НЕ пишутся: они задаются в настройках Cloudflare
