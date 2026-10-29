@@ -2,13 +2,10 @@ name = "expense-bot"
 main = "worker.js"
 compatibility_date = "2025-09-01"
 
-# Необязательная память диалога. Создайте хранилище KV в Cloudflare
-# (Storage & Databases -> KV -> Create), скопируйте его ID, вставьте сюда
-# и уберите решётки в начале трёх строк ниже.
-#
-kv_namespaces
+# Хранилище памяти бота
+[[kv_namespaces]]
 binding = "MEMORY"
 id = "39c9f9361cdc4a3ca4083a64fccf887d"
 
-# Секреты (токены и ключи) сюда НЕ пишутся: они задаются в настройках Cloudflare
-# (Settings -> Variables and Secrets) и в репозиторий не попадают.
+# Секреты задаются в настройках Cloudflare
+# Settings -> Variables and Secrets
