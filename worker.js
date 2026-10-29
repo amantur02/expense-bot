@@ -21,11 +21,30 @@ const ISO_RE = /^\d{4}-\d{2}-\d{2}$/;
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+
+    // Подключение бота одним переходом по ссылке:
+    // https://<адрес воркера>/setup?key=<WEBHOOK_SECRET>
+    if (request.method === "GET" && url.pathname === "/setup") {
+      if (!env.WEBHOOK_SECRET || url.searchParams.get("key") !== env.WEBHOOK_SECRET) {
+        return new Response("forbidden", { status: 403 });
+      }
+      const r = await fetch(`${TELEGRAM_API}/bot${env.TELEGRAM_TOKEN}/setWebhook`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          url: `${url.origin}/webhook`,
+          secret_token: env.WEBHOOK_SECRET,
+          allowed_updates: ["message"],
+        }),
+      });
+      return new Response(await r.text(), { headers: { "content-type": "text/plain; charset=utf-8" } });
+    }
+
     if (request.method !== "POST" || url.pathname !== "/webhook") {
       return new Response("ok");
     }
     if (
-      env.WEBHOOK_SECRET &&
+      !env.WEBHOOK_SECRET ||
       request.headers.get("X-Telegram-Bot-Api-Secret-Token") !== env.WEBHOOK_SECRET
     ) {
       return new Response("forbidden", { status: 403 });
