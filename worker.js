@@ -4,7 +4,7 @@
 // Нужные настройки (Settings -> Variables and Secrets), подробности в setup.md:
 //   TELEGRAM_TOKEN, ANTHROPIC_API_KEY, GOOGLE_SERVICE_ACCOUNT_JSON,
 //   SPREADSHEET_ID, WEBHOOK_SECRET, ALLOWED_USER_ID
-// Необязательно: MODEL (по умолчанию claude-sonnet-5-5), TZ_OFFSET_HOURS (по умолчанию 3)
+// Необязательно: MODEL (по умолчанию claude-haiku-5-5), TZ_OFFSET_HOURS (по умолчанию 3)
 // Привязка KV с именем MEMORY хранит короткую память диалога (необязательно).
 
 const TELEGRAM_API = "https://api.telegram.org";
@@ -183,7 +183,7 @@ async function callClaude(env, system, messages) {
       "content-type": "application/json",
     },
     body: JSON.stringify({
-      model: env.MODEL || "claude-sonnet-5-5",
+      model: env.MODEL || "claude-haiku-5-5",
       max_tokens: 2048,
       system,
       tools: TOOLS,
